@@ -1,24 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
 state={
     email: "",
-    password: ""
+    password: "",
+    name: ""
 }
 
 handleFormChange=(e)=>{
     this.setState({[e.target.name]: e.target.value })
 }
 
-handleSignup=(e)=>{
-    axios.post("/api/user/signup", this.state).then((data)=>{
+handleSignup= async (e)=>{
+   const res= await axios.post("/api/user/signup", this.state);
 
-    })
+   console.log(res);
+   if(res.data){    
+        this.props.history.push('/')   
+    }
 }
   render() {
     return (
         <form>
+            <label htmlFor="name">Name</label>
+            <input id="name" type="text" name="name" value={this.state.name} onChange={this.handleFormChange} />
             <label htmlFor="email">Email</label>
             <input id="email" type="email" name="email" value={this.state.email} onChange={this.handleFormChange} />
             <label htmlFor="password">password</label>
@@ -31,4 +38,4 @@ handleSignup=(e)=>{
     )}
 }
 
-export default Login;
+export default withRouter(Login);
