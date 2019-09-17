@@ -1,8 +1,11 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require("express");
 const cookieParser= require("cookie-parser");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const routes = require("./routes");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -22,7 +25,7 @@ app.use((req,res,next)=>{
     if(token){
 
       //get the verified userID from jwt
-      const { _id }  = jwt.verify(token, "VwyWnsak8mgS1zLpw2W3pUN1isVSQ5jeVW13ugYUJI3QFOQh7c4If4yYKQGJWdWY");
+      const { _id }  = jwt.verify(token, process.env.APP_SECRET);
 
       //set that  userId on the request object 
       req.user = _id;

@@ -2,7 +2,6 @@ const router = require("express").Router();
 const db = require("../../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 router.post("/signup", async (req,res)=>{
 
         req.body.email = req.body.email.toLowerCase();
@@ -18,7 +17,7 @@ router.post("/signup", async (req,res)=>{
         });
         
         //create cookie for user 
-       const token= jwt.sign({_id: user._id}, "VwyWnsak8mgS1zLpw2W3pUN1isVSQ5jeVW13ugYUJI3QFOQh7c4If4yYKQGJWdWY");
+       const token= jwt.sign({_id: user._id}, process.env.APP_SECRET);
 
        res.cookie("token", token, {
                 httpOnly: true,
