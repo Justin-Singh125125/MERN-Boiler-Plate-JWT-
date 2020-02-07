@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import Paper from '@material-ui/core/Paper';
@@ -11,6 +12,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
+import { Component } from 'react';
 // import MenuIcon from '@material-ui/icons/MenuIcon';
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -52,38 +54,42 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export default function CenteredGrid() {
-	const classes = useStyles();
+class Signup extends Component() {
+	render() {
+		const classes = useStyles();
 
-	return (
-		<>
-			<AppBar position='static' className={classes.navbar}>
-				<Toolbar>
-					<Typography variant='h6' className={classes.title}>
-						JWT DEMO
-					</Typography>
+		return (
+			<>
+				<AppBar position='static' className={classes.navbar}>
+					<Toolbar>
+						<Typography variant='h6' className={classes.title}>
+							JWT DEMO
+						</Typography>
 
-					<Link className={classes.links} href='/'>
-						SIGNUP
-					</Link>
-				</Toolbar>
-			</AppBar>
-			<div className={classes.root}>
-				<Grid item xs={12}>
-					<h1 className={classes.header}>LOGIN</h1>
-				</Grid>
-				<Grid container spacing={3}>
+						<Link className={classes.links} href='/login'>
+							LOGIN
+						</Link>
+					</Toolbar>
+				</AppBar>
+				<div className={classes.root}>
 					<Grid item xs={12}>
-						<form className={classes.inputField} noValidate autoComplete='off'>
-							<TextField id='signup-email' label='EMAIL' />
-							<TextField id='signup-password' label='PASSWORD' />
-						</form>
-						<Button variant='contained' color='secondary'>
-							SUBMIT
-						</Button>
+						<h1 className={classes.header}>SIGN UP</h1>
 					</Grid>
-				</Grid>
-			</div>
-		</>
-	);
+					<Grid container spacing={3}>
+						<Grid item xs={12}>
+							<form className={classes.inputField} noValidate autoComplete='off'>
+								<TextField id='signup-email' label='EMAIL' />
+								<TextField id='signup-password' label='PASSWORD' />
+							</form>
+							<Button variant='contained' color='secondary'>
+								SUBMIT
+							</Button>
+						</Grid>
+					</Grid>
+				</div>
+			</>
+		);
+	}
 }
+
+export default Signup;
