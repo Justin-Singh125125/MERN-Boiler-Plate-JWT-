@@ -1,22 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import logo from './logo.svg';
+import './App.css';
 
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Home from './pages/Home';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function App() {
+//pages
+import Signup from './pages/signup';
+
+const App = () => {
 	return (
 		<Router>
-			<>
-				<Switch>
-					<Route exact path='/' component={Signup} />
-					<Route exact path='/login' component={Login} />
-					<Route exact path='/home' component={Home} />
-				</Switch>
-			</>
+			<Switch>
+				<Route exact path='/' component={Signup}></Route>
+			</Switch>
 		</Router>
 	);
-}
+};
 
 export default App;
